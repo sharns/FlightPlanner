@@ -1,6 +1,7 @@
 ﻿using FlightPlanner.Models;
 using Microsoft.AspNetCore.Mvc;
 using FlightPlanner.Storage;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PageResult = FlightPlanner.Models.PageResult;
 
@@ -8,6 +9,7 @@ namespace FlightPlanner.Controllers
 {
     [Route("api")]
     [ApiController]
+    [EnableCors]
     public class CustomerApiController : ControllerBase
     {
         [HttpGet]
