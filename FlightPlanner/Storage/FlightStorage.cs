@@ -28,10 +28,6 @@ namespace FlightPlanner.Storage
 
                 return flight;
             }
-
-
-
-            var asdasdasdasd = 0;
         }
 
         public static Flight GetFlight(int id)
