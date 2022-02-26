@@ -30,6 +30,20 @@ namespace FlightPlanner.Storage
             }
         }
 
+        public static Flight ConvertToFlight(AddFlightRequest request)
+        {
+            var flight = new Flight
+            {
+                From = request.From,
+                To = request.To,
+                ArrivalTime = request.ArrivalTime,
+                DepartureTime = request.DepartureTime,
+                Carrier = request.Carrier,
+            };
+
+            return flight;
+        }
+
         public static Flight GetFlight(int id)
         {
             lock (_lock)

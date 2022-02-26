@@ -12,6 +12,8 @@ namespace FlightPlanner.Controllers
     [EnableCors]
     public class CustomerApiController : ControllerBase
     {
+        private readonly FlightPlannerDbContext _context;
+
         [HttpGet]
         [Route("airports")]
         public IActionResult SearchAirports(string search)
