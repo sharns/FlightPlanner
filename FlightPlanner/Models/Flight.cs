@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.SignalR;
-
-namespace FlightPlanner.Models
+﻿namespace FlightPlanner.Models
 {
     public class Flight
     {
