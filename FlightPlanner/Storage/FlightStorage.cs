@@ -165,3 +165,13 @@ namespace FlightPlanner.Storage
         }
     }
 }
+/*
+ *             lock (_lock)
+            {
+                return _flights.Any(f => f.Carrier.ToLower().Trim() == request.Carrier.ToLower().Trim() &&
+                                  f.DepartureTime == request.DepartureTime &&
+                                  f.ArrivalTime == request.ArrivalTime &&
+                                  f.From.AirportName.ToLower().Trim() == request.From.AirportName.ToLower().Trim() &&
+                                  f.To.AirportName.ToLower().Trim() == request.To.AirportName.ToLower().Trim());
+            }
+*/

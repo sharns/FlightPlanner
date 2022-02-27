@@ -15,6 +15,7 @@ namespace FlightPlanner.Controllers
         {
             _context = context;
         }
+
         [HttpPost]
         [Route("clear")]
         public IActionResult Clear()
