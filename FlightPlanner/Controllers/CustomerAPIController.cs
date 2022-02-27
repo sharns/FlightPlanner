@@ -4,9 +4,7 @@ using FlightPlanner.Models;
 using Microsoft.AspNetCore.Mvc;
 using FlightPlanner.Storage;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using PageResult = FlightPlanner.Models.PageResult;
 
 namespace FlightPlanner.Controllers
 {
@@ -49,15 +47,6 @@ namespace FlightPlanner.Controllers
             return Ok(flight);
         }
 
-        [HttpPost]
-        [Route("flights/search")]
-        public IActionResult InvalidRequest(SearchFlightRequest request)
-        {
-            if (!FlightStorage.IsValidFlight(request))
-                return BadRequest(request);
-            return Ok(FlightStorage.ValidFlight(request));
-        }
-
         private List<Airport> SearchAirport(string search)
         {
             lock (_lock)
@@ -78,6 +67,23 @@ namespace FlightPlanner.Controllers
                     .ToList();
 
                 return fromAirports.Concat(toAirports).ToList();
+            }
+        }
+
+        [HttpPost]
+        [Route("flights/search/")]
+        public IActionResult PostSearchFlights(SearchFlightRequest searchFlightRequest)
+        {
+            lock (_lock)
+            {
+                if (searchFlightRequest.From == searchFlightRequest.To)
+                {
+                    return BadRequest();
+                }
+
+                var searchResults = FlightStorage.SearchByParams(searchFlightRequest.From, searchFlightRequest.To,
+                    searchFlightRequest.DepartureDate, _context);
+                return Ok(searchResults);
             }
         }
     }
